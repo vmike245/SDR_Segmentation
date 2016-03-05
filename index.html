@@ -1,11 +1,23 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="Segmentation">
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="src/Industry.js"></script>
+  <script src="src/BaseCtrl.js"></script>
+
+
 </head>
-  <body>
+  <body ng-controller="BaseCtrl as ctrl">
 
     <p ng-hide="false">hello world
+
+      <div>
+        {{ctrl.testItem.hello}}
+      </div>
+
+      <div ng-repeat="industry in ctrl.Industry">
+        {{industry}}
+      </div>
 
   </body>
 </html>
