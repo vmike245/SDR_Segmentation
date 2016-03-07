@@ -2,6 +2,7 @@
 <html ng-app="Segmentation">
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="vendor/lodash.js"></script>
   <script src="src/BaseCtrl.js"></script>
   <script src="src/Industry.js"></script>
   <script src="src/State.js"></script>
@@ -18,9 +19,17 @@
       <div ng-click='ctrl.setState(state)' ng-repeat="state in ctrl.States track by $index">
         {{state}}
       </div>
-      
+
       <div ng-if="ctrl.State && ctrl.Industry">
-        {{ctrl.AmountType}}: <input ng-model='ctrl.Amount' type='number'>
+        {{ctrl.AmountType}}:
+        <span ng-click='ctrl.setAmount(amount)' ng-repeat="amount in ctrl.Amounts track by $index">
+          {{amount}}
+        </span>
+
+      </div>
+
+      <div>
+        {{ctrl.MarketPlacement}}
       </div>
 
 

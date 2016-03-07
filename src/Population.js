@@ -1,6 +1,6 @@
 angular.module('Segmentation')
   .value('POPULATION_INDUSTRIES', [
-    'County Government',
+    'County Governments',
     'Cities',
     'Higher Education',
     'Legal and Law Firms',

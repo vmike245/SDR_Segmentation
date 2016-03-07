@@ -5,11 +5,8 @@ angular.module('Segmentation')
     ],
 
     'Midwest': [
-      'Kansas',
       'Kentucky',
-      'Missouri',
       'Ohio',
-      'Oklahoma',
       'Pennsylvania (Western)'
     ],
 
@@ -22,7 +19,10 @@ angular.module('Segmentation')
 
     'West Mid-enterprise': [
       'California (Northern)',
-      'Nevada'
+      'Kansas',
+      'Missouri',
+      'Nevada',
+      'Oklahoma'
     ],
 
     'West SLED': [
@@ -52,12 +52,12 @@ angular.module('Segmentation')
       'Michigan',
       'Mississippi',
       'Montana',
+      'Nebraska',
       'New Hampshire',
       'New Jersey',
       'New York',
       'North Carolina',
       'North Dakaota',
-      'Nebraska',
       'Rhode Island',
       'South Carolina',
       'South Dakota',
