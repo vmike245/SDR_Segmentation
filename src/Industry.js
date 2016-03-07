@@ -1,4 +1,4 @@
-angular.module('Categories', [])
+angular.module('Segmentation')
   .value('INDUSTRIES', [
     'Accounts',
     'County Government',
@@ -11,5 +11,7 @@ angular.module('Categories', [])
     'Banks',
     'Public Utilities',
     'Legal and Law Firms',
-    'Non Profits'
-  ])
+    'Non Profits',
+    'Native American Tribes (without Casinos)',
+    'Native American Tribes (with Casinos)'
+  ]);

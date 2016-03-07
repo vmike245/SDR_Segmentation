@@ -2,22 +2,27 @@
 <html ng-app="Segmentation">
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-  <script src="src/Industry.js"></script>
   <script src="src/BaseCtrl.js"></script>
+  <script src="src/Industry.js"></script>
+  <script src="src/State.js"></script>
+  <script src="src/Population.js"></script>
 
 
 </head>
   <body ng-controller="BaseCtrl as ctrl">
 
-    <p ng-hide="false">hello world
-
-      <div>
-        {{ctrl.testItem.hello}}
-      </div>
-
-      <div ng-repeat="industry in ctrl.Industry">
+      <div ng-click='ctrl.setIndustry(industry)' ng-repeat="industry in ctrl.Industries track by $index">
         {{industry}}
       </div>
+
+      <div ng-click='ctrl.setState(state)' ng-repeat="state in ctrl.States track by $index">
+        {{state}}
+      </div>
+      
+      <div ng-if="ctrl.State && ctrl.Industry">
+        {{ctrl.AmountType}}: <input ng-model='ctrl.Amount' type='number'>
+      </div>
+
 
   </body>
 </html>
