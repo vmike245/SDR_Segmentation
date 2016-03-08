@@ -5,7 +5,7 @@ angular.module('Segmentation')
     'Cities',
     'Hospitals',
     'Higher Education',
-    'State Government',
+    'State Governments',
     'Credit Unions',
     'Banks',
     'Public Utilities',

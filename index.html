@@ -7,30 +7,43 @@
   <script src="src/Industry.js"></script>
   <script src="src/State.js"></script>
   <script src="src/Population.js"></script>
+  <link rel="stylesheet" type="text/css" href="src/styles.css" />
 
 
 </head>
   <body ng-controller="BaseCtrl as ctrl">
 
-      <div ng-click='ctrl.setIndustry(industry)' ng-repeat="industry in ctrl.Industries track by $index">
+    <h3> Industry </h3>
+    <div class='flex-row'>
+      <div ng-class='{selected : ctrl.Industry === industry}' class='selectable' ng-click='ctrl.setIndustry(industry)' ng-repeat="industry in ctrl.Industries track by $index">
         {{industry}}
       </div>
+    </div>
 
-      <div ng-click='ctrl.setState(state)' ng-repeat="state in ctrl.States track by $index">
-        {{state}}
+    <h3> State </h3>
+    <div class='flex-row'>
+      <div ng-class='{selected : ctrl.isSelected(state)}' class='selectable' ng-click='ctrl.setState(state)' ng-repeat="state in ctrl.States track by $index">
+        <span ng-repeat="single in state"> {{single}},  </span>
       </div>
+    </div>
 
-      <div ng-if="ctrl.State && ctrl.Industry">
-        {{ctrl.AmountType}}:
-        <span ng-click='ctrl.setAmount(amount)' ng-repeat="amount in ctrl.Amounts track by $index">
-          {{amount}}
-        </span>
+    <div ng-if="ctrl.shouldShowSLEDPicker()">
+      <input type='radio' name='sled' ng-value='true' ng-model='ctrl.isSLED'> Is California or Nevada?
+    </div>
 
-      </div>
+    <h3> Amount </h3>
+    <div ng-if="ctrl.State && ctrl.Industry">
+      {{ctrl.AmountType}}:
+      <span ng-class='{selected : ctrl.Amount === amount}' class='selectable' ng-click='ctrl.setAmount(amount)' ng-repeat="amount in ctrl.Amounts track by $index">
+        {{amount}}
+      </span>
 
-      <div>
-        {{ctrl.MarketPlacement}}
-      </div>
+    </div>
+
+    <h3> Placement </h3>
+    <div>
+      {{ctrl.MarketPlacement}}
+    </div>
 
 
   </body>
