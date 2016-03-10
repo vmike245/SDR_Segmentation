@@ -2,7 +2,7 @@ angular.module('Segmentation', [])
   .controller('BaseCtrl', ['$scope', 'INDUSTRIES', 'STATES', 'POPULATION_INDUSTRIES', function($scope, INDUSTRIES, STATES, POPULATION_INDUSTRIES) {
     const BaseCtrl = this;
     BaseCtrl.Industry = '';
-    BaseCtrl.State = [];
+    BaseCtrl.State = '';
     BaseCtrl.AmountType = '';
     BaseCtrl.Amount = '';
     BaseCtrl.isSLED = false;
@@ -36,6 +36,12 @@ angular.module('Segmentation', [])
 
     BaseCtrl.shouldShowSLEDPicker = function () {
       return BaseCtrl._isEqualToBin('West Mid-enterprise', BaseCtrl.State) && (BaseCtrl.Industry === 'County Governments' || BaseCtrl.Industry === 'Cities' || BaseCtrl.Industry === 'Higher Education' || BaseCtrl.Industry === 'State Governments')
+    }
+
+    BaseCtrl.showWarningBanner = function () {
+      if (BaseCtrl.State) {
+        return BaseCtrl._isEqualToBin('West SLED', BaseCtrl.State);
+      }
     }
 
     $scope.$watchGroup(['ctrl.State', 'ctrl.Industry'], function() {
@@ -224,7 +230,7 @@ angular.module('Segmentation', [])
       return _.isEqual(STATES[bin].sort(), state.sort());
     }
 
-    $scope.$watch('ctrl.Amount', function() {
+    $scope.$watchGroup(['ctrl.Amount', 'ctrl.isSLED'], function() {
       if (BaseCtrl.Amount) {
         BaseCtrl.MarketPlacement = BaseCtrl._findMarketPlacement(BaseCtrl.Industry, BaseCtrl.State, BaseCtrl.Amount);
       }
@@ -237,7 +243,7 @@ angular.module('Segmentation', [])
           return BaseCtrl._getAccountsPlacement(state, amount);
 
         case 'County Governments':
-          return BaseCtrl._getCountyGovermentsPlacement(state, amount);
+          return BaseCtrl._getCountyGovernmentsPlacement(state, amount);
 
         case 'Cities':
           return BaseCtrl._getCitiesPlacement(state, amount);
@@ -292,7 +298,7 @@ angular.module('Segmentation', [])
       }
     }
 
-    BaseCtrl._getCountyGovermentsPlacement = function (state, amount) {
+    BaseCtrl._getCountyGovernmentsPlacement = function (state, amount) {
       if (amount === '< 1M') {
         return 'SME';
       }

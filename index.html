@@ -11,37 +11,41 @@
 
 
 </head>
-  <body ng-controller="BaseCtrl as ctrl">
+  <body class="main" ng-controller="BaseCtrl as ctrl">
+    <h1> SDR Segmentation Helper </h1>
+    <h2 class="warning-banner" ng-if="ctrl.showWarningBanner()">Unfortunately the documentaion on this region is incomplete, so until someone learns how to update a spreadsheet this will not work for these states.</h2>
 
     <h3> Industry </h3>
-    <div class='flex-row'>
+    <div class='choice-section' class='flex-row'>
       <div ng-class='{selected : ctrl.Industry === industry}' class='selectable' ng-click='ctrl.setIndustry(industry)' ng-repeat="industry in ctrl.Industries track by $index">
         {{industry}}
       </div>
     </div>
 
-    <h3> State </h3>
-    <div class='flex-row'>
+    <h3> Region </h3>
+    <div class='choice-section' class='flex-row'>
       <div ng-class='{selected : ctrl.isSelected(state)}' class='selectable' ng-click='ctrl.setState(state)' ng-repeat="state in ctrl.States track by $index">
         <span ng-repeat="single in state"> {{single}},  </span>
       </div>
     </div>
 
     <div ng-if="ctrl.shouldShowSLEDPicker()">
-      <input type='radio' name='sled' ng-value='true' ng-model='ctrl.isSLED'> Is California or Nevada?
+      <input type='checkbox' name='sled' ng-model='ctrl.isSLED'> Is California or Nevada?
     </div>
 
-    <h3> Amount </h3>
-    <div ng-if="ctrl.State && ctrl.Industry">
-      {{ctrl.AmountType}}:
-      <span ng-class='{selected : ctrl.Amount === amount}' class='selectable' ng-click='ctrl.setAmount(amount)' ng-repeat="amount in ctrl.Amounts track by $index">
-        {{amount}}
-      </span>
+    <div class='choice-section'>
+      <h3> Amount </h3>
+      <div ng-if="ctrl.State && ctrl.Industry">
+        {{ctrl.AmountType}}:
+        <span ng-class='{selected : ctrl.Amount === amount}' class='selectable' ng-click='ctrl.setAmount(amount)' ng-repeat="amount in ctrl.Amounts track by $index">
+          {{amount}}
+        </span>
 
+      </div>
     </div>
 
-    <h3> Placement </h3>
-    <div>
+    <h2> Placement </h2>
+    <div class='placement-text'>
       {{ctrl.MarketPlacement}}
     </div>
 
