@@ -31,11 +31,15 @@ angular.module('Segmentation', [])
     }
 
     BaseCtrl.isSelected = function (state) {
-      return _.isEqual(BaseCtrl.State.sort(), state.sort())
+      if (BaseCtrl.State) {
+        return _.isEqual(BaseCtrl.State.sort(), state.sort())
+      }
     }
 
     BaseCtrl.shouldShowSLEDPicker = function () {
-      return BaseCtrl._isEqualToBin('West Mid-enterprise', BaseCtrl.State) && (BaseCtrl.Industry === 'County Governments' || BaseCtrl.Industry === 'Cities' || BaseCtrl.Industry === 'Higher Education' || BaseCtrl.Industry === 'State Governments')
+      if (BaseCtrl.State) {
+        return BaseCtrl._isEqualToBin('West Mid-enterprise', BaseCtrl.State) && (BaseCtrl.Industry === 'County Governments' || BaseCtrl.Industry === 'Cities' || BaseCtrl.Industry === 'Higher Education' || BaseCtrl.Industry === 'State Governments')
+      }
     }
 
     BaseCtrl.showWarningBanner = function () {
